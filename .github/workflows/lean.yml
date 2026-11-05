@@ -11,6 +11,7 @@ permissions:
 jobs:
   lean:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
@@ -20,7 +21,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y g++ libc++1 libc++abi1 sqlite3
+          sudo apt-get install -y g++ libc++1 libc++abi1 llvm-libunwind1 sqlite3
       - uses: leanprover/lean-action@v1
         with:
           build: 'true'

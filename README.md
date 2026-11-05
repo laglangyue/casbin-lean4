@@ -8,10 +8,10 @@
 
 需要 **Lean 4.35.0 / Lake、Python 3 和 C++11 编译器**。SQLite 功能需要 `sqlite3`，可选的 AI 接口需要 `curl`。macOS 的命令行开发工具和 Linux 的 `g++` 均可用于编译。首次构建会下载固定版本、SHA-256 校验的 [RE2](https://github.com/google/re2)；授权和策略逻辑由 Lean 实现，RE2 只提供正则原语，不需要 Go 工具链。
 
-Ubuntu/Debian 还需要 Lean 共享库使用的 C++ 运行库：
+Ubuntu 26.04 还需要 Lean 共享库使用的 C++ 和 LLVM unwind 运行库（其他发行版需安装对应的软件包）：
 
 ```sh
-sudo apt-get install g++ libc++1 libc++abi1 sqlite3
+sudo apt-get install g++ libc++1 libc++abi1 llvm-libunwind1 sqlite3
 ```
 
 ```sh

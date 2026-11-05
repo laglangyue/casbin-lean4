@@ -1,0 +1,5 @@
+[
+  ["alice", "data2", "write"],
+  ["alice", "data2", "read"],
+  ["bob", "data1", "write"]
+]

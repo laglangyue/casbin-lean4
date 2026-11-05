@@ -1,0 +1,28 @@
+name: Lean 4 Core
+
+on:
+  push:
+    branches: [master, 'codex/**']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lean:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          build: 'true'
+          test: 'true'
+          lint: 'false'
+          use-mathlib-cache: 'false'
+      - name: Exercise the command line
+        run: python3 scripts/lean-cli-smoke.py
+      - name: Run the public Lean example
+        run: lake env lean --run lean-examples/Usage.lean

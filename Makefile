@@ -27,3 +27,15 @@ benchmark:
 
 lint:
 	golangci-lint run --verbose
+
+.PHONY: lean-build lean-test lean-demo
+
+lean-build:
+	lake build
+
+lean-test: lean-build
+	lake test
+	python3 scripts/lean-cli-smoke.py
+
+lean-demo:
+	lake exe casbin demo

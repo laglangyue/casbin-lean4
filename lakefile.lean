@@ -5,12 +5,15 @@ open Lean Elab Term in
 elab "systemCppLinkArgs" : term => do
   let args : Array String ← if System.Platform.isOSX then pure #["-lc++"] else do
     let compiler := (← IO.getEnv "CXX").getD "c++"
-    let output ← IO.Process.output { cmd := compiler, args := #["-print-file-name=libstdc++.so"] }
-    let path := output.stdout.trimAscii.toString
-    if output.exitCode != 0 || path == "libstdc++.so" || !(← System.FilePath.pathExists path) then
-      throwError "cannot locate the system C++ runtime using {compiler}: {output.stderr}"
-    -- Lean's bundled linker searches its own sysroot; pass GCC's library by full path.
-    pure #[path, "-lpthread"]
+    let mut paths : Array String := #[]
+    for name in ["libstdc++.so", "libc.so.6"] do
+      let output ← IO.Process.output { cmd := compiler, args := #["-print-file-name=" ++ name] }
+      let path := output.stdout.trimAscii.toString
+      if output.exitCode != 0 || path == name || !(← System.FilePath.pathExists path) then
+        throwError "cannot locate {name} using {compiler}: {output.stderr}"
+      paths := paths.push path
+    -- Match system C++ headers and glibc instead of Lean's older bundled sysroot.
+    pure (paths.push "-lpthread")
   return Lean.toExpr args
 
 package casbin where

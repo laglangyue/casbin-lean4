@@ -7,3 +7,6 @@ Authorization, model parsing, policy management and expression evaluation are im
 RE2 copyright belongs to The RE2 Authors. License: https://github.com/google/re2/blob/2023-03-01/LICENSE
 
 Lean's interpreter requires the primitive's native module to be loaded. `scripts/run-lean.py` builds and loads only this primitive module before running a Lean example. Normal Lake executables link it automatically.
+## Linux runtime dependencies
+
+On Ubuntu/Debian install `g++ libc++1 libc++abi1 sqlite3`. RE2 is compiled with the system C++ compiler; Lean 4.35.0 also links its shared libraries with libc++, so both runtimes must be available when Lean loads the native primitive. macOS supplies libc++ with the system tools.

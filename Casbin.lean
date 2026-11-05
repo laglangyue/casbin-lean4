@@ -1,1 +1,1 @@
-import Casbin.Enforcer
+import Casbin.Compatibility

@@ -34,13 +34,45 @@ private partial def csv (cs : List Char) (acc : String := "")
 
 def Rule.validate (model : Model) (rule : Rule) : Except String Unit := do
   let defn ← findDefinition (model.policies ++ model.roles) rule.ptype
-  if rule.values.length != defn.fields.length then
-    throw s!"{rule.ptype}: expected {defn.fields.length} fields, got {rule.values.length}"
+  let isRole := model.roles.any (·.name == rule.ptype)
+  let expected := defn.fields.length + defn.params
+  if (isRole && rule.values.length < expected) || (!isRole && rule.values.length != expected) then
+    throw s!"{rule.ptype}: expected {expected} fields, got {rule.values.length}"
   if rule.values.any (fun v => v.contains '\n' || v.contains '\r') then
     throw "policy fields cannot contain line breaks"
-  if let some idx := defn.fields.findIdx? (· == "priority") then
-    if (rule.values[idx]?.getD "").toInt?.isNone then
-      throw "the core port requires an integer priority"
+
+def validateConstraints (model : Model) (rules : List Rule) : Except String Unit := do
+  if model.constraints.isEmpty then return
+  if !(model.roles.any (·.name == "g")) then throw "constraints require role definition g"
+  let links := rules.filter (·.ptype == "g")
+  let users := (links.map (fun r => r.values[0]?.getD "")).eraseDups
+  let rolesFor := fun user => (links.filter (fun r => r.values[0]? == some user)).map
+    (fun r => r.values[1]?.getD "") |>.eraseDups
+  for (key, expr) in model.constraints do
+    match expr with
+    | .call "sod" [.text a, .text b] =>
+      for user in users do
+        let roles := rolesFor user
+        if roles.contains a && roles.contains b then throw s!"constraint {key}: {user} cannot hold both {a} and {b}"
+    | .call "sodMax" [.array values, .number limit] =>
+      if limit < 0 || limit.floor != limit then throw s!"constraint {key}: invalid maximum"
+      let roles ← values.mapM fun value => match value with
+        | .text name => .ok name
+        | _ => .error "sodMax requires string role names"
+      if roles.isEmpty then throw "sodMax requires at least one role"
+      for user in users do
+        if ((rolesFor user).filter roles.contains).length > limit.toUInt64.toNat then
+          throw s!"constraint {key}: too many roles assigned to {user}"
+    | .call "roleMax" [.text role, .number limit] =>
+      if limit < 0 || limit.floor != limit then throw s!"constraint {key}: invalid maximum"
+      if (users.filter (fun user => (rolesFor user).contains role)).length > limit.toUInt64.toNat then
+        throw s!"constraint {key}: too many users hold {role}"
+    | .call "rolePre" [.text role, .text prerequisite] =>
+      for user in users do
+        let roles := rolesFor user
+        if roles.contains role && !roles.contains prerequisite then
+          throw s!"constraint {key}: {user} requires {prerequisite} before {role}"
+    | _ => throw s!"unrecognized constraint: {key}"
 
 def parsePolicy (model : Model) (source : String) : Except String (List Rule) := do
   let mut rules := []
@@ -53,6 +85,7 @@ def parsePolicy (model : Model) (source : String) : Except String (List Rule) :=
     let rule := Rule.mk (parts.headD "") (parts.drop 1)
     (rule.validate model).mapError (fun e => s!"policy line {lineNumber}: {e}")
     if !rules.contains rule then rules := rules ++ [rule]
+  validateConstraints model rules
   return rules
 
 private def quoteCSV (value : String) : String :=

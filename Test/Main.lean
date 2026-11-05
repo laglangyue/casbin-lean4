@@ -1,5 +1,6 @@
 import Casbin
 import Lean
+import Test.Extended
 
 open Casbin Lean
 
@@ -32,8 +33,7 @@ private def regressions : IO Unit := do
   expectError "policy arity" (Enforcer.fromText basicModel "p, alice\n")
   expectError "unknown policy type" (Enforcer.fromText basicModel "p2, alice, data1, read\n")
   expectError "bad CSV quote" (Enforcer.fromText basicModel "p, \"alice, data1, read\n")
-  expectError "unsupported function" (Enforcer.fromText (basicModel.replace "m = " "m = eval(p.sub) && ") "")
-  expectError "unsupported numeric operator" (Expr.parse "r.sub > 10")
+  expectError "unknown function" (Enforcer.fromText (basicModel.replace "m = " "m = missing(p.sub) && ") "")
   expectError "missing variable" (Enforcer.fromText (basicModel.replace "r.sub" "r.missing") "")
   expectError "nonboolean matcher" (Enforcer.fromText (basicModel.replace "r.sub == p.sub && r.obj == p.obj && r.act == p.act" "r.sub") "")
   expectError "unterminated continuation" (Model.parse (basicModel ++ "\\"))
@@ -88,7 +88,7 @@ private def regressions : IO Unit := do
       ("", "^(a?)*$", true), ("ac", "^a(b)?c$", true)] do
     assertEq s!"regex {input} {pat}" (← unwrap (regexMatch input pat)) expected
   expectError "invalid regex" (regexMatch "abc" "[")
-  expectError "unsupported regex quantifier" (regexMatch "abc" "a{2}")
+  assertEq "regex counted quantifier" (← unwrap (regexMatch "aabc" "a{2}")) true
   expectError "regex nested quantifier" (regexMatch "abc" "a**")
   assertEq "keyMatch suffix" (keyMatch "/foo/bar" "/foo/*") true
   assertEq "keyMatch prefix boundary" (keyMatch "/foobar" "/foo/*") false
@@ -114,7 +114,8 @@ private def regressions : IO Unit := do
   let priorities ← unwrap (Enforcer.fromText priorityModel "p, 10, alice, data1, read, deny\np, 1, alice, data1, read, allow\n")
   assertEq "numeric priority" (← unwrap (priorities.enforceEx ["alice", "data1", "read"]))
     ⟨true, ["1", "alice", "data1", "read", "allow"]⟩
-  expectError "nonnumeric priority rejected" (Enforcer.fromText priorityModel "p, bad, alice, data1, read, allow\n")
+  let nonnumeric ← unwrap (Enforcer.fromText priorityModel "p, bad, alice, data1, read, allow\n")
+  assertEq "nonnumeric priority retains decision" (← unwrap (nonnumeric.enforce ["alice", "data1", "read"])) true
   let (priorities, _) ← unwrap (priorities.addPolicy ["-1", "alice", "data1", "read", "deny"])
   assertEq "priority after mutation" (← unwrap (priorities.enforce ["alice", "data1", "read"])) false
   let denyModel := basicModel.replace "p = sub, obj, act" "p = sub, obj, act, eft" |>.replace
@@ -152,11 +153,7 @@ private structure ConformanceCase where
   tests : List ConformanceTest
   deriving FromJson
 
-private def unsupported : List (String × String) := [
-  ("eval_operator.json", "dynamic eval is outside the core scope"),
-  ("rbac_with_different_types_of_roles.json", "conditional / temporal roles are outside the core scope"),
-  ("subject_priority.json", "subjectPriority is outside the core scope"),
-  ("subject_priority_model_with_domain__subject_priority_policy_with_domain.json", "subjectPriority is outside the core scope")]
+private def unsupported : List (String × String) := []
 
 private def conformance (root : System.FilePath) : IO Unit := do
   let entries ← (root / "cases").readDir
@@ -197,6 +194,7 @@ private def conformance (root : System.FilePath) : IO Unit := do
 def main (args : List String) : IO UInt32 := do
   try
     regressions
+    Extended.run
     let root := args.head? |>.getD ((← IO.getEnv "CASBIN_CONFORMANCE_DIR").getD "conformance")
     conformance root
     return 0

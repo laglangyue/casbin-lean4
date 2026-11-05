@@ -1,4 +1,4 @@
-name: Lean 4 Core
+name: Lean 4
 
 on:
   push:
@@ -16,6 +16,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - name: Install native dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ sqlite3
       - uses: leanprover/lean-action@v1
         with:
           build: 'true'
@@ -25,4 +30,7 @@ jobs:
       - name: Exercise the command line
         run: python3 scripts/lean-cli-smoke.py
       - name: Run the public Lean example
-        run: lake env lean --run lean-examples/Usage.lean
+        run: |
+          python3 scripts/run-lean.py lean-examples/Usage.lean
+          python3 scripts/run-lean.py lean-examples/Runtime.lean
+          python3 scripts/run-lean.py lean-examples/Abac.lean

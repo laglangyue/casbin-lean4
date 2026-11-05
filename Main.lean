@@ -12,11 +12,18 @@ private def decisionJson (d : Decision) : Json :=
   Json.mkObj [("allow", toJson d.allow), ("explain", toJson d.explain)]
 
 private def help : String :=
-  "Casbin Lean 4 core\n\n" ++
+  "Casbin Lean 4\n\n" ++
   "  casbin demo\n" ++
   "  casbin enforce MODEL.conf POLICY.csv SUBJECT OBJECT ACTION ...\n" ++
   "  casbin batch MODEL.conf POLICY.csv REQUESTS.json\n\n" ++
-  "Requests follow the fields in the model. Batch input is an array of string arrays.\n" ++
+  "  casbin enforce-json MODEL.conf POLICY.csv REQUEST.json\n" ++
+  "  casbin validate MODEL.conf POLICY.csv\n" ++
+  "  casbin export-js MODEL.conf POLICY.csv USER\n" ++
+  "  casbin save-db MODEL.conf POLICY.csv DATABASE.sqlite\n" ++
+  "  casbin enforce-db MODEL.conf DATABASE.sqlite REQUEST.json\n" ++
+  "  casbin explain MODEL.conf POLICY.csv REQUEST.json ENDPOINT AI_MODEL\n\n" ++
+  "Requests follow model field order. JSON requests accept strings, numbers, booleans and objects.\n" ++
+  "explain uses CASBIN_AI_KEY and sends the model, policies and request to the supplied endpoint.\n" ++
   "enforce: exit 0 = allowed, 1 = denied, 2 = error. batch: exit 0 = processed, 2 = error."
 
 private def demo : IO UInt32 := do
@@ -35,15 +42,48 @@ private def run (args : List String) : IO UInt32 := do
   | ["--help"] | ["-h"] => IO.println help; return 0
   | "enforce" :: model :: policy :: request =>
     let e ← Enforcer.fromFiles model policy
-    let result ← unwrap (e.enforceEx request)
+    let result ← e.enforceValuesIO (request.map Value.text)
     IO.println (decisionJson result).compress
     return if result.allow then 0 else 1
   | ["batch", model, policy, requestsPath] =>
     let e ← Enforcer.fromFiles model policy
     let json ← unwrap (Json.parse (← IO.FS.readFile requestsPath))
-    let requests : List (List String) ← unwrap (fromJson? json)
-    let decisions ← requests.mapM fun r => unwrap (e.enforceEx r)
+    let requests : List (List Value) ← unwrap (fromJson? json)
+    let decisions ← requests.mapM fun r => e.enforceValuesIO r
     IO.println (Json.arr (decisions.map decisionJson).toArray).compress
+    return 0
+  | ["enforce-json", model, policy, requestPath] =>
+    let e ← Enforcer.fromFiles model policy
+    let request : List Value ← unwrap (fromJson? (← unwrap (Json.parse (← IO.FS.readFile requestPath))))
+    let result ← e.enforceValuesIO request
+    IO.println (decisionJson result).compress
+    return if result.allow then 0 else 1
+  | ["validate", model, policy] =>
+    let e ← Enforcer.fromFiles model policy
+    for role in e.model.roles do unwrap (e.detectCycles role.name)
+    IO.println (Json.mkObj [("valid", .bool true), ("policyCount", toJson e.rules.length)]).compress
+    return 0
+  | ["export-js", model, policy, user] =>
+    let e ← Enforcer.fromFiles model policy
+    IO.print (e.casbinJsGetPermissionForUser user)
+    return 0
+  | ["save-db", model, policy, database] =>
+    let e ← Enforcer.fromFiles model policy
+    (Adapter.sqlite database).save e.model e.rules
+    IO.println (Json.mkObj [("saved", .bool true), ("policyCount", toJson e.rules.length)]).compress
+    return 0
+  | ["enforce-db", model, database, requestPath] =>
+    let e ← unwrap (Enforcer.fromText (← IO.FS.readFile model) "")
+    let runtime ← RuntimeEnforcer.new e (some (Adapter.sqlite database))
+    let request : List Value ← unwrap (fromJson? (← unwrap (Json.parse (← IO.FS.readFile requestPath))))
+    let result ← runtime.enforceValuesEx request
+    IO.println (decisionJson result).compress
+    return if result.allow then 0 else 1
+  | ["explain", model, policy, requestPath, endpoint, aiModel] =>
+    let e ← Enforcer.fromFiles model policy
+    let request : List Value ← unwrap (fromJson? (← unwrap (Json.parse (← IO.FS.readFile requestPath))))
+    let explanation ← e.explain request { endpoint := endpoint, model := aiModel, apiKey := (← IO.getEnv "CASBIN_AI_KEY").getD "" }
+    IO.println (Json.mkObj [("explanation", .str explanation)]).compress
     return 0
   | _ => throw (IO.userError help)
 

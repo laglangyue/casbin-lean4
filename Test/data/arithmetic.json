@@ -1,0 +1,666 @@
+[
+  {
+    "error": "Value '2' cannot be used with the logical operator '\u0026\u0026', it is not a bool",
+    "expression": "2 \u0026\u0026 true"
+  },
+  {
+    "error": "Value '3' cannot be used with the logical operator '\u0026\u0026', it is not a bool",
+    "expression": "true \u0026\u0026 3"
+  },
+  {
+    "error": "Value '2' cannot be used with the prefix '!'",
+    "expression": "!2"
+  },
+  {
+    "error": "Value '2' cannot be used with the ternary operator '?', it is not a bool",
+    "expression": "2 ? 1 : 3"
+  },
+  {
+    "error": "Value 'true' cannot be used with the modifier '-', it is not a number",
+    "expression": "1 - true"
+  },
+  {
+    "error": "Value 'x' cannot be used with the modifier '*', it is not a number",
+    "expression": "'x' * 2"
+  },
+  {
+    "error": "Value '2' cannot be used with the comparator 'in', it is not a number",
+    "expression": "1 in 2"
+  },
+  {
+    "expected": 256,
+    "expression": "0xff + 1"
+  },
+  {
+    "error": "Cannot transition token types from NUMERIC [0] to VARIABLE [X10]",
+    "expression": "0X10 + 1"
+  },
+  {
+    "expected": 3,
+    "expression": "01 + 2"
+  },
+  {
+    "expected": 1,
+    "expression": ".5 * 2"
+  },
+  {
+    "expected": 3,
+    "expression": "1. + 2"
+  },
+  {
+    "error": "Cannot transition token types from NUMERIC [1] to VARIABLE [e2]",
+    "expression": "1.e2"
+  },
+  {
+    "error": "Cannot transition token types from NUMERIC [1] to VARIABLE [e100]",
+    "expression": "(1 / 0) \u003e 1e100"
+  },
+  {
+    "expected": false,
+    "expression": "(1 % 0) == (1 % 0)"
+  },
+  {
+    "expected": 1793836800,
+    "expression": "'2026-11-05'"
+  },
+  {
+    "expected": 1793882040,
+    "expression": "'2026-11-05 12:34'"
+  },
+  {
+    "expected": 1793882096,
+    "expression": "'2026-11-05 12:34:56'"
+  },
+  {
+    "expected": 1793853296,
+    "expression": "'2026-11-05T12:34:56+08:00'"
+  },
+  {
+    "expected": "2026-11-05T12:34:56Z",
+    "expression": "'2026-11-05T12:34:56Z'"
+  },
+  {
+    "expected": 1793882096,
+    "expression": "'2026-11-05T12:34:56.123Z'"
+  },
+  {
+    "expected": 1793882096,
+    "expression": "'Thu Nov 5 12:34:56 2026'"
+  },
+  {
+    "expected": 64,
+    "expression": "2 ** 3 ** 2"
+  },
+  {
+    "expected": 4,
+    "expression": "-2 ** 2"
+  },
+  {
+    "expected": 0.25,
+    "expression": "2 ** -2"
+  },
+  {
+    "expected": 9,
+    "expression": "8 | 3 \u0026 1"
+  },
+  {
+    "expected": 9,
+    "expression": "8 ^ 3 \u0026 1"
+  },
+  {
+    "expected": 1,
+    "expression": "8 \u0026 3 ^ 1"
+  },
+  {
+    "expected": 20,
+    "expression": "2 + 3 \u003c\u003c 2"
+  },
+  {
+    "expected": 8,
+    "expression": "64 \u003e\u003e 2 + 1"
+  },
+  {
+    "expected": 37,
+    "expression": "2 ** 3 * 4 + 5"
+  },
+  {
+    "expected": 5,
+    "expression": "10 - 3 - 2"
+  },
+  {
+    "expected": 5,
+    "expression": "100 / 10 / 2"
+  },
+  {
+    "expected": 1,
+    "expression": "true ? 1 : 2"
+  },
+  {
+    "expected": 2,
+    "expression": "false ? 1 : true ? 2 : 3"
+  },
+  {
+    "expected": "x3",
+    "expression": "'x' + 3"
+  },
+  {
+    "expected": "3x",
+    "expression": "3 + 'x'"
+  },
+  {
+    "expected": "xtrue",
+    "expression": "'x' + true"
+  },
+  {
+    "expected": true,
+    "expression": "'a' \u003c 'b'"
+  },
+  {
+    "expected": false,
+    "expression": "'a' == 'b'"
+  },
+  {
+    "expected": true,
+    "expression": "!false \u0026\u0026 true"
+  },
+  {
+    "expected": true,
+    "expression": "true || false \u0026\u0026 false"
+  },
+  {
+    "expected": true,
+    "expression": "1 in (1, 2, 3)"
+  },
+  {
+    "expected": true,
+    "expression": "'abc' =~ 'a.*'"
+  },
+  {
+    "expected": true,
+    "expression": "'abc' !~ 'z'"
+  },
+  {
+    "expected": 14,
+    "expression": "(3 + 4) * 2"
+  },
+  {
+    "expected": -0,
+    "expression": "-8 % 1"
+  },
+  {
+    "expected": 0,
+    "expression": "-8 \u003c\u003c 1"
+  },
+  {
+    "expected": 0,
+    "expression": "-8 \u003e\u003e 1"
+  },
+  {
+    "expected": 0,
+    "expression": "-8 \u0026 1"
+  },
+  {
+    "expected": -7,
+    "expression": "-8 | 1"
+  },
+  {
+    "expected": -7,
+    "expression": "-8 ^ 1"
+  },
+  {
+    "expected": -0,
+    "expression": "-8 % 2"
+  },
+  {
+    "expected": 0,
+    "expression": "-8 \u003c\u003c 2"
+  },
+  {
+    "expected": 0,
+    "expression": "-8 \u003e\u003e 2"
+  },
+  {
+    "expected": 0,
+    "expression": "-8 \u0026 2"
+  },
+  {
+    "expected": -6,
+    "expression": "-8 | 2"
+  },
+  {
+    "expected": -6,
+    "expression": "-8 ^ 2"
+  },
+  {
+    "expected": -2,
+    "expression": "-8 % 3"
+  },
+  {
+    "expected": 0,
+    "expression": "-8 \u003c\u003c 3"
+  },
+  {
+    "expected": 0,
+    "expression": "-8 \u003e\u003e 3"
+  },
+  {
+    "expected": 0,
+    "expression": "-8 \u0026 3"
+  },
+  {
+    "expected": -5,
+    "expression": "-8 | 3"
+  },
+  {
+    "expected": -5,
+    "expression": "-8 ^ 3"
+  },
+  {
+    "expected": -8,
+    "expression": "-8 % 64"
+  },
+  {
+    "expected": 0,
+    "expression": "-8 \u003c\u003c 64"
+  },
+  {
+    "expected": 0,
+    "expression": "-8 \u003e\u003e 64"
+  },
+  {
+    "expected": 64,
+    "expression": "-8 \u0026 64"
+  },
+  {
+    "expected": -8,
+    "expression": "-8 | 64"
+  },
+  {
+    "expected": -72,
+    "expression": "-8 ^ 64"
+  },
+  {
+    "expected": -0,
+    "expression": "-3 % 1"
+  },
+  {
+    "expected": 0,
+    "expression": "-3 \u003c\u003c 1"
+  },
+  {
+    "expected": 0,
+    "expression": "-3 \u003e\u003e 1"
+  },
+  {
+    "expected": 1,
+    "expression": "-3 \u0026 1"
+  },
+  {
+    "expected": -3,
+    "expression": "-3 | 1"
+  },
+  {
+    "expected": -4,
+    "expression": "-3 ^ 1"
+  },
+  {
+    "expected": -1,
+    "expression": "-3 % 2"
+  },
+  {
+    "expected": 0,
+    "expression": "-3 \u003c\u003c 2"
+  },
+  {
+    "expected": 0,
+    "expression": "-3 \u003e\u003e 2"
+  },
+  {
+    "expected": 0,
+    "expression": "-3 \u0026 2"
+  },
+  {
+    "expected": -1,
+    "expression": "-3 | 2"
+  },
+  {
+    "expected": -1,
+    "expression": "-3 ^ 2"
+  },
+  {
+    "expected": -0,
+    "expression": "-3 % 3"
+  },
+  {
+    "expected": 0,
+    "expression": "-3 \u003c\u003c 3"
+  },
+  {
+    "expected": 0,
+    "expression": "-3 \u003e\u003e 3"
+  },
+  {
+    "expected": 1,
+    "expression": "-3 \u0026 3"
+  },
+  {
+    "expected": -1,
+    "expression": "-3 | 3"
+  },
+  {
+    "expected": -2,
+    "expression": "-3 ^ 3"
+  },
+  {
+    "expected": -3,
+    "expression": "-3 % 64"
+  },
+  {
+    "expected": 0,
+    "expression": "-3 \u003c\u003c 64"
+  },
+  {
+    "expected": 0,
+    "expression": "-3 \u003e\u003e 64"
+  },
+  {
+    "expected": 64,
+    "expression": "-3 \u0026 64"
+  },
+  {
+    "expected": -3,
+    "expression": "-3 | 64"
+  },
+  {
+    "expected": -67,
+    "expression": "-3 ^ 64"
+  },
+  {
+    "expected": 0,
+    "expression": "0 % 1"
+  },
+  {
+    "expected": 0,
+    "expression": "0 \u003c\u003c 1"
+  },
+  {
+    "expected": 0,
+    "expression": "0 \u003e\u003e 1"
+  },
+  {
+    "expected": 0,
+    "expression": "0 \u0026 1"
+  },
+  {
+    "expected": 1,
+    "expression": "0 | 1"
+  },
+  {
+    "expected": 1,
+    "expression": "0 ^ 1"
+  },
+  {
+    "expected": 0,
+    "expression": "0 % 2"
+  },
+  {
+    "expected": 0,
+    "expression": "0 \u003c\u003c 2"
+  },
+  {
+    "expected": 0,
+    "expression": "0 \u003e\u003e 2"
+  },
+  {
+    "expected": 0,
+    "expression": "0 \u0026 2"
+  },
+  {
+    "expected": 2,
+    "expression": "0 | 2"
+  },
+  {
+    "expected": 2,
+    "expression": "0 ^ 2"
+  },
+  {
+    "expected": 0,
+    "expression": "0 % 3"
+  },
+  {
+    "expected": 0,
+    "expression": "0 \u003c\u003c 3"
+  },
+  {
+    "expected": 0,
+    "expression": "0 \u003e\u003e 3"
+  },
+  {
+    "expected": 0,
+    "expression": "0 \u0026 3"
+  },
+  {
+    "expected": 3,
+    "expression": "0 | 3"
+  },
+  {
+    "expected": 3,
+    "expression": "0 ^ 3"
+  },
+  {
+    "expected": 0,
+    "expression": "0 % 64"
+  },
+  {
+    "expected": 0,
+    "expression": "0 \u003c\u003c 64"
+  },
+  {
+    "expected": 0,
+    "expression": "0 \u003e\u003e 64"
+  },
+  {
+    "expected": 0,
+    "expression": "0 \u0026 64"
+  },
+  {
+    "expected": 64,
+    "expression": "0 | 64"
+  },
+  {
+    "expected": 64,
+    "expression": "0 ^ 64"
+  },
+  {
+    "expected": 0,
+    "expression": "3 % 1"
+  },
+  {
+    "expected": 6,
+    "expression": "3 \u003c\u003c 1"
+  },
+  {
+    "expected": 1,
+    "expression": "3 \u003e\u003e 1"
+  },
+  {
+    "expected": 1,
+    "expression": "3 \u0026 1"
+  },
+  {
+    "expected": 3,
+    "expression": "3 | 1"
+  },
+  {
+    "expected": 2,
+    "expression": "3 ^ 1"
+  },
+  {
+    "expected": 1,
+    "expression": "3 % 2"
+  },
+  {
+    "expected": 12,
+    "expression": "3 \u003c\u003c 2"
+  },
+  {
+    "expected": 0,
+    "expression": "3 \u003e\u003e 2"
+  },
+  {
+    "expected": 2,
+    "expression": "3 \u0026 2"
+  },
+  {
+    "expected": 3,
+    "expression": "3 | 2"
+  },
+  {
+    "expected": 1,
+    "expression": "3 ^ 2"
+  },
+  {
+    "expected": 0,
+    "expression": "3 % 3"
+  },
+  {
+    "expected": 24,
+    "expression": "3 \u003c\u003c 3"
+  },
+  {
+    "expected": 0,
+    "expression": "3 \u003e\u003e 3"
+  },
+  {
+    "expected": 3,
+    "expression": "3 \u0026 3"
+  },
+  {
+    "expected": 3,
+    "expression": "3 | 3"
+  },
+  {
+    "expected": 0,
+    "expression": "3 ^ 3"
+  },
+  {
+    "expected": 3,
+    "expression": "3 % 64"
+  },
+  {
+    "expected": 0,
+    "expression": "3 \u003c\u003c 64"
+  },
+  {
+    "expected": 0,
+    "expression": "3 \u003e\u003e 64"
+  },
+  {
+    "expected": 0,
+    "expression": "3 \u0026 64"
+  },
+  {
+    "expected": 67,
+    "expression": "3 | 64"
+  },
+  {
+    "expected": 67,
+    "expression": "3 ^ 64"
+  },
+  {
+    "expected": 0,
+    "expression": "8 % 1"
+  },
+  {
+    "expected": 16,
+    "expression": "8 \u003c\u003c 1"
+  },
+  {
+    "expected": 4,
+    "expression": "8 \u003e\u003e 1"
+  },
+  {
+    "expected": 0,
+    "expression": "8 \u0026 1"
+  },
+  {
+    "expected": 9,
+    "expression": "8 | 1"
+  },
+  {
+    "expected": 9,
+    "expression": "8 ^ 1"
+  },
+  {
+    "expected": 0,
+    "expression": "8 % 2"
+  },
+  {
+    "expected": 32,
+    "expression": "8 \u003c\u003c 2"
+  },
+  {
+    "expected": 2,
+    "expression": "8 \u003e\u003e 2"
+  },
+  {
+    "expected": 0,
+    "expression": "8 \u0026 2"
+  },
+  {
+    "expected": 10,
+    "expression": "8 | 2"
+  },
+  {
+    "expected": 10,
+    "expression": "8 ^ 2"
+  },
+  {
+    "expected": 2,
+    "expression": "8 % 3"
+  },
+  {
+    "expected": 64,
+    "expression": "8 \u003c\u003c 3"
+  },
+  {
+    "expected": 1,
+    "expression": "8 \u003e\u003e 3"
+  },
+  {
+    "expected": 0,
+    "expression": "8 \u0026 3"
+  },
+  {
+    "expected": 11,
+    "expression": "8 | 3"
+  },
+  {
+    "expected": 11,
+    "expression": "8 ^ 3"
+  },
+  {
+    "expected": 8,
+    "expression": "8 % 64"
+  },
+  {
+    "expected": 0,
+    "expression": "8 \u003c\u003c 64"
+  },
+  {
+    "expected": 0,
+    "expression": "8 \u003e\u003e 64"
+  },
+  {
+    "expected": 0,
+    "expression": "8 \u0026 64"
+  },
+  {
+    "expected": 72,
+    "expression": "8 | 64"
+  },
+  {
+    "expected": 72,
+    "expression": "8 ^ 64"
+  }
+]

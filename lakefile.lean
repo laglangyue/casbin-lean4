@@ -3,7 +3,8 @@ open System Lake DSL
 
 package casbin where
   version := v!"0.2.0"
-  moreLinkArgs := if System.Platform.isOSX then #["-lc++"] else #["-lstdc++", "-lpthread"]
+  -- Select the system GCC runtime explicitly instead of Lean's C++ linker shim.
+  moreLinkArgs := if System.Platform.isOSX then #["-lc++"] else #["-l:libstdc++.so.6", "-lpthread"]
 
 extern_lib casbin_re2 pkg := do
   let src ← inputTextFile (pkg.dir / "native" / "regex.cpp")

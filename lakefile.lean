@@ -1,10 +1,21 @@
 import Lake
 open System Lake DSL
 
+open Lean Elab Term in
+elab "systemCppLinkArgs" : term => do
+  let args : Array String ← if System.Platform.isOSX then pure #["-lc++"] else do
+    let compiler := (← IO.getEnv "CXX").getD "c++"
+    let output ← IO.Process.output { cmd := compiler, args := #["-print-file-name=libstdc++.so"] }
+    let path := output.stdout.trimAscii.toString
+    if output.exitCode != 0 || path == "libstdc++.so" || !(← System.FilePath.pathExists path) then
+      throwError "cannot locate the system C++ runtime using {compiler}: {output.stderr}"
+    -- Lean's bundled linker searches its own sysroot; pass GCC's library by full path.
+    pure #[path, "-lpthread"]
+  return Lean.toExpr args
+
 package casbin where
   version := v!"0.2.0"
-  -- Select the system GCC runtime explicitly instead of Lean's C++ linker shim.
-  moreLinkArgs := if System.Platform.isOSX then #["-lc++"] else #["-l:libstdc++.so.6", "-lpthread"]
+  moreLinkArgs := systemCppLinkArgs
 
 extern_lib casbin_re2 pkg := do
   let src ← inputTextFile (pkg.dir / "native" / "regex.cpp")

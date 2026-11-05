@@ -5,7 +5,8 @@ open Lean Elab Term in
 elab "systemCppLinkArgs" : term => do
   let args : Array String ← if System.Platform.isOSX then pure #["-lc++"] else do
     let compiler := (← IO.getEnv "CXX").getD "c++"
-    let mut paths : Array String := #[]
+    let sysroot ← Lean.findSysroot
+    let mut paths : Array String := #["-L", (sysroot / "lib").toString]
     for name in ["libstdc++.so"] do
       let output ← IO.Process.output { cmd := compiler, args := #["-print-file-name=" ++ name] }
       let path := output.stdout.trimAscii.toString

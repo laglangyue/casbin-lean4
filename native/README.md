@@ -10,6 +10,6 @@ Lean's interpreter requires the primitive's native module to be loaded. `scripts
 
 ## Linux runtime dependencies
 
-On Ubuntu/Debian install `g++ libc++-dev libc++abi-dev libuv1-dev libgmp-dev sqlite3`. Other Linux distributions need equivalent development libraries. RE2 uses the system C++ compiler; Lean 4.35.0 also links against libc++, libc++abi, libuv and GMP. The libc++ development packages include the required LLVM unwind dependencies. macOS supplies the C++ runtime with the system tools, and Lean's macOS toolchain includes its other native libraries.
+On Ubuntu/Debian install `g++ sqlite3`. RE2 uses the system C++ compiler. Lean's native dependencies, including its matching libc++ version, libuv, GMP and OpenSSL, come from the Lean toolchain's `lib` directory. macOS supplies the C++ runtime with the system tools, and Lean's macOS toolchain includes its other native libraries.
 
-On Linux, set `LEAN_CC=cc` before running Lake. Lake queries the system C++ compiler for the libstdc++ library path, and the system C compiler links against the host's glibc. This keeps the native code's headers and linked runtimes consistent even when Lean's bundled sysroot uses an older glibc. Linux binaries therefore depend on the build host's native runtime versions.
+On Linux, set `LEAN_CC=cc` before running Lake. Lake adds the Lean toolchain's native library directory and queries the system C++ compiler for the libstdc++ library path. The system C compiler links against the host's glibc. This keeps both Lean's libc++ ABI and the native code's system headers consistent with their linked runtimes. Linux binaries therefore depend on the build host's glibc and libstdc++ versions.

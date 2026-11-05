@@ -22,6 +22,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y g++ libc++1 libc++abi1 llvm-libunwind1 sqlite3
+          echo 'LEAN_CC=cc' >> "$GITHUB_ENV"
       - uses: leanprover/lean-action@v1
         with:
           build: 'true'

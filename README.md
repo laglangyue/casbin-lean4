@@ -12,7 +12,10 @@ Ubuntu 26.04 还需要 Lean 共享库使用的 C++ 和 LLVM unwind 运行库（�
 
 ```sh
 sudo apt-get install g++ libc++1 libc++abi1 llvm-libunwind1 sqlite3
+export LEAN_CC=cc
 ```
+
+Linux 构建使用系统 C 编译器，使 C++ 编译时的系统头文件与最终链接的 glibc 一致。
 
 ```sh
 lake build

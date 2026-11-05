@@ -1,0 +1,3176 @@
+[
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foo",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foo",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foo",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foo/bar",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foo/bar",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foo/bar",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foobar",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foobar",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foobar",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foo",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foo",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foo",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foo/bar",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foo/bar",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": "/bar"
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foo/bar",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": "bar"
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foobar",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foobar",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": "bar"
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foobar",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foo",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foo",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foo",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foo/bar",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foo/bar",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foo/bar",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foobar",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foobar",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foobar",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/",
+      "/:resource"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/resource1",
+      "/:resource"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/myid",
+      "/:id/using/:resId"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/myid/using/myresid",
+      "/:id/using/:resId"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/proxy/myid",
+      "/proxy/:id/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/proxy/myid/",
+      "/proxy/:id/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/proxy/myid/res",
+      "/proxy/:id/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/proxy/myid/res/res2",
+      "/proxy/:id/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/proxy/myid/res/res2/res3",
+      "/proxy/:id/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/proxy/",
+      "/proxy/:id/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/alice",
+      "/:id"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/alice/all",
+      "/:id/all"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/alice",
+      "/:id/all"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/alice/all",
+      "/:id"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/alice/all",
+      "/:/all"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/foo",
+      "/foo",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/foo",
+      "/foo*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/foo",
+      "/foo/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/foo/bar",
+      "/foo",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/foo/bar",
+      "/foo*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/foo/bar",
+      "/foo/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/foobar",
+      "/foo",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/foobar",
+      "/foo*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/foobar",
+      "/foo/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/",
+      "/:resource",
+      "resource"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/resource1",
+      "/:resource",
+      "resource"
+    ],
+    "legacy": true,
+    "expected": "resource1"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/myid",
+      "/:id/using/:resId",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/myid/using/myresid",
+      "/:id/using/:resId",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/myid/using/myresid",
+      "/:id/using/:resId",
+      "resId"
+    ],
+    "legacy": true,
+    "expected": "myresid"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/proxy/myid",
+      "/proxy/:id/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/proxy/myid/",
+      "/proxy/:id/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/proxy/myid/res",
+      "/proxy/:id/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/proxy/myid/res/res2",
+      "/proxy/:id/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/proxy/myid/res/res2/res3",
+      "/proxy/:id/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/proxy/myid/res/res2/res3",
+      "/proxy/:id/res/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/proxy/",
+      "/proxy/:id/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/alice",
+      "/:id",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "alice"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/alice/all",
+      "/:id/all",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "alice"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/alice",
+      "/:id/all",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/alice/all",
+      "/:id",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/alice/all",
+      "/:/all",
+      ""
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/a/x/42",
+      "/(a|b)/x/:id",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "42"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/42/a",
+      "/:id/(a|b)",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "42"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/b/7/c/9",
+      "/(a|b)/:x/(c|d)/:y",
+      "y"
+    ],
+    "legacy": true,
+    "expected": "9"
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo/bar",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo/bar",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo/bar",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foobar",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foobar",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foobar",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/",
+      "/{resource}"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/resource1",
+      "/{resource}"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/myid",
+      "/{id}/using/{resId}"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/myid/using/myresid",
+      "/{id}/using/{resId}"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/proxy/myid",
+      "/proxy/{id}/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/proxy/myid/",
+      "/proxy/{id}/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/proxy/myid/res",
+      "/proxy/{id}/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/proxy/myid/res/res2",
+      "/proxy/{id}/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/proxy/myid/res/res2/res3",
+      "/proxy/{id}/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/proxy/",
+      "/proxy/{id}/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/myid/using/myresid",
+      "/{id/using/{resId}"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/foo",
+      "/foo",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/foo",
+      "/foo*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/foo",
+      "/foo/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/foo/bar",
+      "/foo",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/foo/bar",
+      "/foo*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/foo/bar",
+      "/foo/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/foobar",
+      "/foo",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/foobar",
+      "/foo*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/foobar",
+      "/foo/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/",
+      "/{resource}",
+      "resource"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/resource1",
+      "/{resource}",
+      "resource"
+    ],
+    "legacy": true,
+    "expected": "resource1"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/myid",
+      "/{id}/using/{resId}",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/myid/using/myresid",
+      "/{id}/using/{resId}",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/myid/using/myresid",
+      "/{id}/using/{resId}",
+      "resId"
+    ],
+    "legacy": true,
+    "expected": "myresid"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/proxy/myid",
+      "/proxy/{id}/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/proxy/myid/",
+      "/proxy/{id}/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/proxy/myid/res",
+      "/proxy/{id}/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/proxy/myid/res/res2",
+      "/proxy/{id}/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/proxy/myid/res/res2/res3",
+      "/proxy/{id}/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/proxy/",
+      "/proxy/{id}/*",
+      "id"
+    ],
+    "legacy": true,
+    "expected": ""
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/{id/using/myresid",
+      "/{id/using/{resId}",
+      "resId"
+    ],
+    "legacy": true,
+    "expected": "myresid"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/{id/using/myresid/status}",
+      "/{id/using/{resId}/status}",
+      "resId"
+    ],
+    "legacy": true,
+    "expected": "myresid"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/proxy/myid/res/res2/res3",
+      "/proxy/{id}/*/{res}",
+      "res"
+    ],
+    "legacy": true,
+    "expected": "res3"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/api/project1_admin/info",
+      "/api/{proj}_admin/info",
+      "proj"
+    ],
+    "legacy": true,
+    "expected": "project1"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/a/x/42",
+      "/(a|b)/x/{id}",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "42"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/42/a",
+      "/{id}/(a|b)",
+      "id"
+    ],
+    "legacy": true,
+    "expected": "42"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/b/7/c/9",
+      "/(a|b)/{x}/(c|d)/{y}",
+      "y"
+    ],
+    "legacy": true,
+    "expected": "9"
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/123",
+      "/parent/{id}/child/{id}"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/456",
+      "/parent/{id}/child/{id}"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/123",
+      "/parent/{id}/child/{another_id}"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/456",
+      "/parent/{id}/child/{another_id}"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/123/book/123",
+      "/parent/{id}/child/{id}/book/{id}"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/123/book/456",
+      "/parent/{id}/child/{id}/book/{id}"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/456/book/123",
+      "/parent/{id}/child/{id}/book/{id}"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/456/book/",
+      "/parent/{id}/child/{id}/book/{id}"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/456",
+      "/parent/{id}/child/{id}/book/{id}"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/123",
+      "/parent/{i/d}/child/{i/d}"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/a/123/child/123",
+      "/(a|b)/{id}/child/{id}"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/a/123/child/456",
+      "/(a|b)/{id}/child/{id}"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/c/123/child/123",
+      "/(a|b)/{id}/child/{id}"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/123/x/123",
+      "/{id}/(x|y)/{id}"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/create",
+      "/topic/create"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/create/123",
+      "/topic/create"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/delete",
+      "/topic/create"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/edit",
+      "/topic/edit/[0-9]+"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/edit/123",
+      "/topic/edit/[0-9]+"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/edit/abc",
+      "/topic/edit/[0-9]+"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/foo/delete/123",
+      "/topic/delete/[0-9]+"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/delete/0",
+      "/topic/delete/[0-9]+"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/edit/123s",
+      "/topic/delete/[0-9]+"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/edit/1",
+      "/topic/edit/[0-9"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "192.168.2.123",
+      "192.168.2.0/24"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "192.168.2.123",
+      "192.168.3.0/24"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "192.168.2.123",
+      "192.168.2.0/16"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "192.168.2.123",
+      "192.168.2.123"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "192.168.2.123",
+      "192.168.2.123/32"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "10.0.0.11",
+      "10.0.0.0/8"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "11.0.0.123",
+      "10.0.0.0/8"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "192.168.2.abc",
+      "192.168.2.0/24"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "192.168.2.123",
+      "not-an-ip"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/create"
+    ],
+    "error": "regexMatch: expected 2 arguments, but got 1"
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/create/123",
+      "/topic/create",
+      "/topic/update"
+    ],
+    "error": "regexMatch: expected 2 arguments, but got 3"
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/create",
+      false
+    ],
+    "error": "regexMatch: argument must be a string"
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/create/123",
+      "/topic/create"
+    ],
+    "expected": true
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "/topic/edit/1",
+      "/topic/edit/[0-9"
+    ],
+    "error": "regexMatch: error parsing regexp: missing closing ]: `[0-9`"
+  },
+  {
+    "name": "regexMatch",
+    "args": [
+      "GET",
+      "(GET"
+    ],
+    "error": "regexMatch: error parsing regexp: missing closing ): `(GET`"
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foo"
+    ],
+    "error": "keyMatch: expected 2 arguments, but got 1"
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foo/create/123",
+      "/foo/*",
+      "/foo/update/123"
+    ],
+    "error": "keyMatch: expected 2 arguments, but got 3"
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foo",
+      true
+    ],
+    "error": "keyMatch: argument must be a string"
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foo/bar",
+      "/foo"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foo/bar",
+      "/foo/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch",
+    "args": [
+      "/foo/bar",
+      "/foo*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foo"
+    ],
+    "error": "keyGet: expected 2 arguments, but got 1"
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foo/bar",
+      "/foo/*",
+      "bar"
+    ],
+    "error": "keyGet: expected 2 arguments, but got 3"
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foo/bar",
+      true
+    ],
+    "error": "keyGet: argument must be a string"
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foo/bar",
+      "/foo"
+    ],
+    "expected": ""
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foo/bar",
+      "/foo/*"
+    ],
+    "expected": "bar"
+  },
+  {
+    "name": "keyGet",
+    "args": [
+      "/foo/bar",
+      "/foo*"
+    ],
+    "expected": "/bar"
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/"
+    ],
+    "error": "keyMatch2: expected 2 arguments, but got 1"
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foo/create/123",
+      "/*",
+      "/foo/update/123"
+    ],
+    "error": "keyMatch2: expected 2 arguments, but got 3"
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foo",
+      true
+    ],
+    "error": "keyMatch2: argument must be a string"
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/",
+      "/:resource"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/resource1",
+      "/:resource"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foo",
+      "/foo"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foo",
+      "/foo*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foo",
+      "/foo/*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch2",
+    "args": [
+      "/foo/bar",
+      "/foo/(bar"
+    ],
+    "error": "keyMatch2: error parsing regexp: missing closing ): `^/foo/(bar$`"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/myid/using/myresid",
+      "/:id/using/:resId"
+    ],
+    "error": "keyGet2: expected 3 arguments, but got 2"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/myid/using/myresid",
+      "/:id/using/:resId",
+      "id",
+      "resId"
+    ],
+    "error": "keyGet2: expected 3 arguments, but got 4"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/myid/using/myresid",
+      "/:id/using/:resId",
+      true
+    ],
+    "error": "keyGet2: argument must be a string"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/myid/using/myresid",
+      "/:id/using/:resId",
+      "id"
+    ],
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/myid/using/myresid",
+      "/:id/using/:resId",
+      "resId"
+    ],
+    "expected": "myresid"
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/myid/using/myresid",
+      "/:id/using/:resId",
+      "missing"
+    ],
+    "expected": ""
+  },
+  {
+    "name": "keyGet2",
+    "args": [
+      "/myid/using",
+      "/:id/(using",
+      "id"
+    ],
+    "error": "keyGet2: error parsing regexp: missing closing ): `^/(?P<casbinToken0>[^/]+)/(using$`"
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/"
+    ],
+    "error": "keyMatch3: expected 2 arguments, but got 1"
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo/create/123",
+      "/*",
+      "/foo/update/123"
+    ],
+    "error": "keyMatch3: expected 2 arguments, but got 3"
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo",
+      true
+    ],
+    "error": "keyMatch3: argument must be a string"
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo",
+      "/foo"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo",
+      "/foo*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo",
+      "/foo/*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo/bar",
+      "/foo"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo/bar",
+      "/foo*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foo/bar",
+      "/foo/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foobar",
+      "/foo"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foobar",
+      "/foo*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/foobar",
+      "/foo/*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/",
+      "/{resource}"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/resource1",
+      "/{resource}"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/myid",
+      "/{id}/using/{resId}"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/myid/using/myresid",
+      "/{id}/using/{resId}"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/proxy/myid",
+      "/proxy/{id}/*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/proxy/myid/",
+      "/proxy/{id}/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/proxy/myid/res",
+      "/proxy/{id}/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/proxy/myid/res/res2",
+      "/proxy/{id}/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/proxy/myid/res/res2/res3",
+      "/proxy/{id}/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch3",
+    "args": [
+      "/proxy/",
+      "/proxy/{id}/*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/myid/using/myresid",
+      "/{id}/using/{resId}"
+    ],
+    "error": "keyGet3: expected 3 arguments, but got 2"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/myid/using/myresid",
+      "/{id}/using/{resId}",
+      "id",
+      "resId"
+    ],
+    "error": "keyGet3: expected 3 arguments, but got 4"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/myid/using/myresid",
+      "/{id}/using/{resId}",
+      true
+    ],
+    "error": "keyGet3: argument must be a string"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/myid/using/myresid",
+      "/{id}/using/{resId}",
+      "id"
+    ],
+    "expected": "myid"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/api/group1_group_name/project1_admin/info",
+      "/api/{g}_{gn}/{proj}_admin/info",
+      "gn"
+    ],
+    "expected": "group_name"
+  },
+  {
+    "name": "keyGet3",
+    "args": [
+      "/myid/using/myresid",
+      "/{id}/using/{resId}",
+      "missing"
+    ],
+    "expected": ""
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/123"
+    ],
+    "error": "keyMatch4: expected 2 arguments, but got 1"
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/123",
+      "/parent/{id}/child/{id}",
+      true
+    ],
+    "error": "keyMatch4: expected 2 arguments, but got 3"
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/123",
+      true
+    ],
+    "error": "keyMatch4: argument must be a string"
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/123",
+      "/parent/{id}/child/{id}"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/456",
+      "/parent/{id}/child/{id}"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/123",
+      "/parent/{id}/child/{another_id}"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch4",
+    "args": [
+      "/parent/123/child/456",
+      "/parent/{id}/child/{another_id}"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/foo"
+    ],
+    "error": "keyMatch5: expected 2 arguments, but got 1"
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/foo/create/123",
+      "/foo/*",
+      "/foo/update/123"
+    ],
+    "error": "keyMatch5: expected 2 arguments, but got 3"
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/parent/123",
+      true
+    ],
+    "error": "keyMatch5: argument must be a string"
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/parent/child?status=1&type=2",
+      "/parent/child"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/parent?status=1&type=2",
+      "/parent/child"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/parent/child/?status=1&type=2",
+      "/parent/child/"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/parent/child/?status=1&type=2",
+      "/parent/child"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/parent/child?status=1&type=2",
+      "/parent/child/"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/foo",
+      "/foo"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/foo",
+      "/foo*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/foo",
+      "/foo/*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/foo/bar",
+      "/foo"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/foo/bar",
+      "/foo*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/foo/bar",
+      "/foo/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/foobar",
+      "/foo"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/foobar",
+      "/foo*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/foobar",
+      "/foo/*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/",
+      "/{resource}"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/resource1",
+      "/{resource}"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/myid",
+      "/{id}/using/{resId}"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/myid/using/myresid",
+      "/{id}/using/{resId}"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/proxy/myid",
+      "/proxy/{id}/*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/proxy/myid/",
+      "/proxy/{id}/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/proxy/myid/res",
+      "/proxy/{id}/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/proxy/myid/res/res2",
+      "/proxy/{id}/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/proxy/myid/res/res2/res3",
+      "/proxy/{id}/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/proxy/",
+      "/proxy/{id}/*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/proxy/myid?status=1&type=2",
+      "/proxy/{id}/*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/proxy/myid/",
+      "/proxy/{id}/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/proxy/myid/res?status=1&type=2",
+      "/proxy/{id}/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/proxy/myid/res/res2?status=1&type=2",
+      "/proxy/{id}/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/proxy/myid/res/res2/res3?status=1&type=2",
+      "/proxy/{id}/*"
+    ],
+    "expected": true
+  },
+  {
+    "name": "keyMatch5",
+    "args": [
+      "/proxy/",
+      "/proxy/{id}/*"
+    ],
+    "expected": false
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "192.168.2.123"
+    ],
+    "error": "ipMatch: expected 2 arguments, but got 1"
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "192.168.2.123",
+      128
+    ],
+    "error": "ipMatch: argument must be a string"
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "192.168.2.123",
+      "192.168.2.0/24"
+    ],
+    "expected": true
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "192.168.2.abc",
+      "192.168.2.0/24"
+    ],
+    "error": "ipMatch: \"192.168.2.abc\" is not an IP address"
+  },
+  {
+    "name": "ipMatch",
+    "args": [
+      "192.168.2.123",
+      "not-an-ip"
+    ],
+    "error": "ipMatch: \"not-an-ip\" is neither an IP address nor a CIDR"
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "*/foo"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "*/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "*/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "*/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "*/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "*/foo/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "*/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "*/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "*/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo",
+      "*/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo",
+      "*/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo",
+      "*/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo/bar",
+      "*/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo/bar",
+      "*/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo/bar",
+      "*/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foobar",
+      "*/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foobar",
+      "*/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foobar",
+      "*/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo",
+      "*/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo",
+      "*/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo",
+      "*/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo/bar",
+      "*/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo/bar",
+      "*/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo/bar",
+      "*/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foobar",
+      "*/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foobar",
+      "*/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foobar",
+      "*/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "**/foo"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "**/foo**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "**/foo/**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "**/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "**/foo**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "**/foo/**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "**/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "**/foo**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "**/foo/**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo",
+      "**/foo"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo",
+      "**/foo**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo",
+      "**/foo/**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo/bar",
+      "**/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo/bar",
+      "**/foo**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo/bar",
+      "**/foo/**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foobar",
+      "**/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foobar",
+      "**/foo**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foobar",
+      "**/foo/**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo",
+      "**/foo"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo",
+      "**/foo**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo",
+      "**/foo/**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo/bar",
+      "**/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo/bar",
+      "**/foo**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo/bar",
+      "**/foo/**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foobar",
+      "**/foo"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foobar",
+      "**/foo**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foobar",
+      "**/foo/**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "*/foo**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "**/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "*/foo/**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo",
+      "**/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "*/foo**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "**/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "*/foo/**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foo/bar",
+      "**/foo/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "*/foo**"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "**/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "*/foo/**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/foobar",
+      "**/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo",
+      "*/foo**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo",
+      "**/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo",
+      "*/foo/**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo",
+      "**/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo/bar",
+      "*/foo**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo/bar",
+      "**/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo/bar",
+      "*/foo/**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foo/bar",
+      "**/foo/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foobar",
+      "*/foo**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foobar",
+      "**/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foobar",
+      "*/foo/**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/foobar",
+      "**/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo",
+      "*/foo**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo",
+      "**/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo",
+      "*/foo/**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo",
+      "**/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo/bar",
+      "*/foo**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo/bar",
+      "**/foo*"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo/bar",
+      "*/foo/**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foo/bar",
+      "**/foo/*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foobar",
+      "*/foo**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foobar",
+      "**/foo*"
+    ],
+    "legacy": true,
+    "expected": true
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foobar",
+      "*/foo/**"
+    ],
+    "legacy": true,
+    "expected": false
+  },
+  {
+    "name": "globMatch",
+    "args": [
+      "/prefix/subprefix/foobar",
+      "**/foo/*"
+    ],
+    "legacy": true,
+    "expected": false
+  }
+]

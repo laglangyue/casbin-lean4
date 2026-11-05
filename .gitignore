@@ -28,3 +28,6 @@ _testmain.go
 
 # vendor files
 vendor
+
+# Lean / Lake build output
+.lake/
